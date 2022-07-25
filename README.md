@@ -17,6 +17,10 @@
   <sub>Built with 🦀🕸 by <a href="https://rustwasm.github.io/">The Rust and WebAssembly Working Group</a></sub>
 </div>
 
+## My Notes
+
+Running Webpack requires the following environment variable: `NODE_OPTIONS=--openssl-legacy-provider`.
+
 ## About
 
 [**📚 Read this template tutorial! 📚**][template-docs]
