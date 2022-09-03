@@ -24,10 +24,22 @@ pub struct Universe {
     cells: Vec<Cell>,
 }
 
-
 /// Public methods, exported to JavaScript.
 #[wasm_bindgen]
 impl Universe {
+    pub fn new_space_ship() -> Universe {
+        let width = 64 as u32;
+        let height = 64 as u32;
+
+        let cells = vec![Cell::Dead; (width * height) as usize];
+
+        Universe {
+            width,
+            height,
+            cells,
+        }
+    }
+
     pub fn new() -> Universe {
         let width = 64;
         let height = 64;
