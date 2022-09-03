@@ -8,7 +8,7 @@ const DEAD_COLOR = "#FFFFFF";
 const ALIVE_COLOR = "#000000";
 
 // Construct the universe, and get its width and height.
-const universe = Universe.new_space_ship();
+let universe = Universe.new();
 const width = universe.width();
 const height = universe.height();
 
@@ -78,5 +78,19 @@ const renderLoop = () => {
   requestAnimationFrame(renderLoop);
 };
 
-console.log("just got the change");
 requestAnimationFrame(renderLoop);
+
+const singleGliderButton = document.getElementById('single-glider-button');
+const mod2Mod7Button = document.getElementById('mod2-mod7-button');
+
+singleGliderButton.addEventListener(
+  "click",
+  function() { universe = Universe.new_space_ship()},
+  false
+);
+
+mod2Mod7Button.addEventListener(
+  "click",
+  function() { universe = Universe.new()},
+  false
+);

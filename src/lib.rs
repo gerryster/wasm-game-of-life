@@ -31,7 +31,27 @@ impl Universe {
         let width = 64 as u32;
         let height = 64 as u32;
 
-        let cells = vec![Cell::Dead; (width * height) as usize];
+        let mut cells = vec![Cell::Dead; (width * height) as usize];
+
+        // Glider or Featherweight spaceship:
+        // https://conwaylife.com/wiki/Glider
+        // 0  1  2
+        // 3  4  5
+        // 6  7  8
+        //       1
+        // 1     1
+        //    1  1
+
+        let mut row_offset = 0;
+        cells[row_offset + 2] = Cell::Alive;
+
+        row_offset = 1 * 64;
+        cells[row_offset + 0] = Cell::Alive;
+        cells[row_offset + 2] = Cell::Alive;
+
+        row_offset = 2 * 64;
+        cells[row_offset + 1] = Cell::Alive;
+        cells[row_offset + 2] = Cell::Alive;
 
         Universe {
             width,
