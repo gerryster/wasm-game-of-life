@@ -26,37 +26,40 @@ pub struct Universe {
 /// Public methods, exported to JavaScript.
 #[wasm_bindgen]
 impl Universe {
+    // TODO: make this into new
     pub fn new_space_ship() -> Universe {
         let width = 64 as u32;
         let height = 64 as u32;
 
-        let mut cells = vec![Cell::Dead; (width * height) as usize];
+        Universe {
+            width,
+            height,
+            cells: vec![Cell::Dead; (width * height) as usize],
+        }
+    }
 
+    pub fn add_glider(&mut self) {
         // Glider or Featherweight spaceship:
         // https://conwaylife.com/wiki/Glider
-        // 0  1  2
-        // 3  4  5
-        // 6  7  8
         //       1
         // 1     1
         //    1  1
 
+        // TODO: use get_index here:
         let mut row_offset = 0;
-        cells[row_offset + 2] = Cell::Alive;
+        self.cells[row_offset + 2] = Cell::Alive;
 
         row_offset = 1 * 64;
-        cells[row_offset + 0] = Cell::Alive;
-        cells[row_offset + 2] = Cell::Alive;
+        self.cells[row_offset + 0] = Cell::Alive;
+        self.cells[row_offset + 2] = Cell::Alive;
 
         row_offset = 2 * 64;
-        cells[row_offset + 1] = Cell::Alive;
-        cells[row_offset + 2] = Cell::Alive;
+        self.cells[row_offset + 1] = Cell::Alive;
+        self.cells[row_offset + 2] = Cell::Alive;
+    }
 
-        Universe {
-            width,
-            height,
-            cells,
-        }
+    pub fn kill_all(&mut self) {
+        self.cells = vec![Cell::Dead; (self.width() * self.height()) as usize];
     }
 
     pub fn new() -> Universe {

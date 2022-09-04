@@ -82,15 +82,22 @@ requestAnimationFrame(renderLoop);
 
 const singleGliderButton = document.getElementById('single-glider-button');
 const mod2Mod7Button = document.getElementById('mod2-mod7-button');
+const killAllButton = document.getElementById('kill-all-button');
 
 singleGliderButton.addEventListener(
   "click",
-  function() { universe = Universe.new_space_ship()},
+  function() { universe.add_glider() },
   false
 );
 
 mod2Mod7Button.addEventListener(
   "click",
-  function() { universe = Universe.new()},
+  function() { universe = Universe.new() },
+  false
+);
+
+killAllButton.addEventListener(
+  "click",
+  function() { universe.kill_all() },
   false
 );
