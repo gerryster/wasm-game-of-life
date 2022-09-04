@@ -8,7 +8,7 @@ const DEAD_COLOR = "#FFFFFF";
 const ALIVE_COLOR = "#000000";
 
 // Construct the universe, and get its width and height.
-let universe = Universe.new();
+const universe = Universe.new();
 const width = universe.width();
 const height = universe.height();
 
@@ -92,7 +92,7 @@ singleGliderButton.addEventListener(
 
 mod2Mod7Button.addEventListener(
   "click",
-  function() { universe = Universe.new() },
+  function() { universe.reset_mod2_mod7() },
   false
 );
 

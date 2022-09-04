@@ -26,8 +26,7 @@ pub struct Universe {
 /// Public methods, exported to JavaScript.
 #[wasm_bindgen]
 impl Universe {
-    // TODO: make this into new
-    pub fn new_space_ship() -> Universe {
+    pub fn new() -> Universe {
         let width = 64 as u32;
         let height = 64 as u32;
 
@@ -62,11 +61,8 @@ impl Universe {
         self.cells = vec![Cell::Dead; (self.width() * self.height()) as usize];
     }
 
-    pub fn new() -> Universe {
-        let width = 64;
-        let height = 64;
-
-        let cells = (0..width * height)
+    pub fn reset_mod2_mod7(&mut self) {
+        self.cells = (0..self.width() * self.height())
             .map(|i| {
                 if i % 2 == 0 || i % 7 == 0 {
                     Cell::Alive
@@ -75,12 +71,6 @@ impl Universe {
                 }
             })
             .collect();
-
-        Universe {
-            width,
-            height,
-            cells,
-        }
     }
 
     pub fn width(&self) -> u32 {
