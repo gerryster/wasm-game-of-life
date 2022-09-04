@@ -43,18 +43,13 @@ impl Universe {
         //       1
         // 1     1
         //    1  1
+        self.set_cell(0, 2, Cell::Alive);
 
-        // TODO: use get_index here:
-        let mut row_offset = 0;
-        self.cells[row_offset + 2] = Cell::Alive;
+        self.set_cell(1, 0, Cell::Alive);
+        self.set_cell(1, 2, Cell::Alive);
 
-        row_offset = 1 * 64;
-        self.cells[row_offset + 0] = Cell::Alive;
-        self.cells[row_offset + 2] = Cell::Alive;
-
-        row_offset = 2 * 64;
-        self.cells[row_offset + 1] = Cell::Alive;
-        self.cells[row_offset + 2] = Cell::Alive;
+        self.set_cell(2, 1, Cell::Alive);
+        self.set_cell(2, 2, Cell::Alive);
     }
 
     pub fn kill_all(&mut self) {
@@ -123,6 +118,12 @@ impl Universe {
     // cells vector is returned.
     fn get_index(&self, row: u32, column: u32) -> usize {
         (row * self.width + column) as usize
+    }
+
+    // Sets a cell value for the given zero based row and column.
+    fn set_cell(&mut self, row: u32, column: u32, new_val: Cell) {
+        let idx = self.get_index(row, column);
+        self.cells[idx] = new_val;
     }
 
     fn live_neighbor_count(&self, row: u32, column: u32) -> u8 {
