@@ -82,6 +82,7 @@ requestAnimationFrame(renderLoop);
 
 const singleGliderButton = document.getElementById('single-glider-button');
 const mod2Mod7Button = document.getElementById('mod2-mod7-button');
+const randomButton = document.getElementById('random-button');
 const killAllButton = document.getElementById('kill-all-button');
 
 singleGliderButton.addEventListener(
@@ -93,6 +94,12 @@ singleGliderButton.addEventListener(
 mod2Mod7Button.addEventListener(
   "click",
   function() { universe.reset_mod2_mod7() },
+  false
+);
+
+randomButton.addEventListener(
+  "click",
+  function () { universe.reset_random() },
   false
 );
 

@@ -1,5 +1,6 @@
 mod utils;
 
+use js_sys::Math;
 use wasm_bindgen::prelude::*;
 
 // When the `wee_alloc` feature is enabled, use `wee_alloc` as the global
@@ -54,6 +55,14 @@ impl Universe {
 
     pub fn kill_all(&mut self) {
         self.cells = vec![Cell::Dead; (self.width() * self.height()) as usize];
+    }
+
+    pub fn reset_random(&mut self) {
+        self.cells = (0..self.width() * self.height())
+            .map(|_i| {
+                if Math::random() >= 0.5 { Cell::Dead } else { Cell::Alive }
+            })
+            .collect();
     }
 
     pub fn reset_mod2_mod7(&mut self) {
