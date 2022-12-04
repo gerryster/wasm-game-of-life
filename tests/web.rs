@@ -2,6 +2,7 @@
 
 #![cfg(target_arch = "wasm32")]
 
+// left off here: need to export the code under test
 extern crate wasm_bindgen_test;
 use wasm_bindgen_test::*;
 
